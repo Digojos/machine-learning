@@ -1,5 +1,5 @@
 from sklearn.tree import DecisionTreeClassifier
-from decision_tree import DecisionTree
+from src.models.decision_tree import DecisionTree
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -28,4 +28,16 @@ sk_pred = sk_tree.predict(X_test)
 sk_accuracy = accuracy_score(y_test, sk_pred)
 print(f"Acurácia: {sk_accuracy:.4f}\n")
 
+print("=" * 60)
 print(f"📊 Diferença: {abs(my_accuracy - sk_accuracy):.4f}")
+
+# Validação
+diff = abs(my_accuracy - sk_accuracy)
+if diff < 0.05:
+    print("✅ VALIDADO! Implementação está correta (diferença < 5%)")
+elif diff < 0.10:
+    print("⚠️ ATENÇÃO! Diferença aceitável, mas pode melhorar")
+else:
+    print("❌ REVISAR! Diferença significativa da implementação padrão")
+
+print("=" * 60)
